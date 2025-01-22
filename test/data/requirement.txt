@@ -1,0 +1,14 @@
+Test Task WDIO + JS / TS
+ 
+Using Javascript (Typescript) + WebdriverIO Framework, create a test for the following E2E scenario at qase.io (https://app.qase.io):
+1. Login
+2. Create a new Project (fill project name and description)
+3. In the new project create a new test case (click “+Case” or “create new case” button)
+4. Fill title, description, severity and steps
+5. Add an attachment (upload any file e.g. jpg image)
+6. Save the test case and verify it’s present in the list of test cases
+ 
+Requirements:
+1. Create a free account at qase.io which will be used in the test
+2. The test should be stable and reliable (can be executed multiple times with the same result)
+3. Please add readme.md file with instructions “how to” run the test
