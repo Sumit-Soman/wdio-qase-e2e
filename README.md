@@ -1,6 +1,19 @@
-# WDIO Qase E2E
+# wdio-web-mobile-boilerplate E2E
 
-This project contains end-to-end UI tests for Qase application using WebdriverIO + Typescript
+This project is based on WebdriverIO + Typescript which enables reliable end-to-end testing for modern web apps and Mobile apps. 
+
+Features Covered:- 
+- Ability to run on Cloud like Lambda Tests etc
+- Suport to run on local Emulator 
+- Supports Headful/Headless mode execution.
+- Separate Web and Mobile (Android, IOS) configuration.
+- Ability to produce and visually compare screenshots.
+- Allure report capturing screenshot/video/trace file on failure.
+- .env for storing environment sensitive variables like Cloud credentials (Lambda Test)
+- config.yml for passing running configuration like devicename, baseurl, browser configure to the whole project as Global
+- Flexi POM implemenation with different class for different component for modular code.
+- Scripts to start and shutdown emulator on fly.
+- Linting checks 
 
 ## Prerequisites
 
@@ -12,8 +25,8 @@ This project contains end-to-end UI tests for Qase application using WebdriverIO
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/wdio-qase-e2e.git
-    cd wdio-qase-e2e
+    git clone https://github.com/yourusername/wdio-web-mobile-boilerplate.git
+    cd wdio-web-mobile-boilerplate
     ```
 
 2. Install dependencies:
@@ -28,6 +41,24 @@ To run the tests, use the following command to run on local
 npm run test:local
 
 ```
+
+To run Android Mobile tests. First need to start the Appium server and then emulator followed by tests
+```
+npm run appium 
+
+npm run test:Android
+```
+
+## Start and Shutdown Emulator
+
+### To start the emulator, use the following cmd
+    ```
+    npm run launch:emulator -- --emulatorDeviceName=Pixel_5_API_32
+    ```
+### To shutting down emulator
+    ```
+    npm run shutdown-emulator
+    ```
 
 ## Reporting
 
@@ -107,63 +138,3 @@ describe('Login', () => {
     });
 });
 ```
-
-## Test Coverage
-
-The test suite covers various aspects of the Qase application, from login to project creation. The following test cases are included:
-
-1. **Login Test**: Verifies that a user can log in with valid credentials.
-2. **Project Creation Test**: Ensures that a new project can be created successfully.
-3. **Test Case Creation**: New test is added to the project.
-4. **Verify the Test Created** 
-
-Before each test, we clean up any existing projects to ensure that the free user limit of 2 projects is not exceeded. This is done to maintain a clean state for each test run.
-
-Example of a cleanup function in `beforeEach` hook:
-
-```js
-beforeEach(async () => {
-    // Code to delete existing projects if any
-     await ProjectPage.removeLastProjectIfExist();
-});
-```
-
-This ensures that each test starts with a clean slate, allowing for consistent and reliable test results.
-
-## Adding a New Test
-
-To add a new test, follow these steps:
-
-1. Create a new page object in the `pageobjects/` directory if it doesn't already exist.
-2. Create a new test specification in the `specs/` directory.
-3. Write the test using the methods from the page object.
-
-Example:
-
-1. Create `pageobjects/profile.page.js`:
-    ```js
-    class ProfilePage {
-        get profileName() { return $('#profile-name'); }
-        // Add more elements and methods as needed
-    }
-
-    module.exports = new ProfilePage();
-    ```
-
-2. Create `specs/profile.spec.js`:
-    ```js
-    const ProfilePage = require('../pageobjects/profile.page');
-
-    describe('Profile', () => {
-        it('should display the correct profile name', async () => {
-            await ProfilePage.open();
-            const name = await ProfilePage.profileName.getText();
-            expect(name).toBe('Expected Name');
-        });
-    });
-    ```
-
-3. Run the test:
-    ```sh
-    npm run test:local
-    ```

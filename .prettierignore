@@ -1,0 +1,9 @@
+node_modules/*
+_results_/*
+allure-report/*
+allure-results/*
+logs/*
+dist/*
+apps/*
+package-lock.json
+

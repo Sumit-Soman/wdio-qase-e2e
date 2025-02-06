@@ -85,7 +85,6 @@ export default class WebDriver {
   };
 
   public async waitForPageLoad() {
-    await browser.pause(2000); // This sleep is to wait for actual page load to start & then check for page load completed or not
     await browser.waitUntil(
       async () => browser.execute(() => document.readyState === "complete"),
       {
@@ -94,5 +93,11 @@ export default class WebDriver {
         interval: 2000,
       }
     );
+  }
+
+  public async getAttributeValue(element: ChainablePromiseElement, attributeName: string, timeout: number = TIMEOUT) {
+    await element.waitForDisplayed({ timeout });
+    const value = await element.getAttribute(attributeName);
+    return value;
   }
 }
