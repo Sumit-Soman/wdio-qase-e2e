@@ -1,0 +1,15 @@
+# Use official Node.js image with necessary dependencies
+FROM mcr.microsoft.com/playwright:v1.40.0-focal
+
+# Set working directory
+WORKDIR /app
+
+# Copy package.json and install dependencies
+COPY package.json package-lock.json ./
+RUN npm install
+
+# Copy test scripts and configuration
+COPY . .
+
+# Run WebDriverIO tests
+CMD ["npm", "run", "test:ci"]
