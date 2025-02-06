@@ -17,7 +17,7 @@
   "type": "module",
   "scripts": {
     "test:local": "wdio run configs/wdio.local.conf.ts",
-    "test:ci": "wdiorun configs/wdio.ci.conf.ts ",
+    "test:ci": "wdio run configs/wdio.ci.conf.ts ",
     "test:remote": "wdio run configs/wdio.remote.conf.ts",
     "test:android": "wdio run configs/wdio.android.conf.ts",
     "test:ios": "wdio run configs/wdio.ios.conf.ts",
